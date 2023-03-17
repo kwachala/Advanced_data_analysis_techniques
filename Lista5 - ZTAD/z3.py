@@ -5,6 +5,8 @@ df = pd.read_csv(r'C:\Users\drago\PycharmProjects\ZTAD\Lista4 - ZTAD\chmiel.csv'
 
 zapylona, niezapylona = df['zapylona'], df['niezapyl']
 
+# nie ma rozkladu normalnego
+
 alpha = 0.05
 p1 = stats.ranksums(zapylona, niezapylona)[1]
 
