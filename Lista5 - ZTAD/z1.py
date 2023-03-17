@@ -1,5 +1,4 @@
 from scipy import stats
-import statsmodels.stats.descriptivestats
 import matplotlib.pyplot as plt
 
 w1 = [88, 69, 86, 59, 57, 82, 94, 93, 64, 91, 86, 59, 91, 60, 57, 92, 70, 88, 70, 85]
