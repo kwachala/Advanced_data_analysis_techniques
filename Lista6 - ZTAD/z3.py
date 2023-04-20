@@ -21,9 +21,32 @@ for count, value in enumerate(all):
             third.append(value)
         case 0:
             fourth.append(value)
-
-# brak normalności rozkładu - kruskal
 alpha = 0.05
+# brak normalności rozkładu - kruskal
+p_norm_1 = stats.shapiro(first)[1]
+if p_norm_1 > alpha:
+    print('Powinniśmy zaakceptować hipotezę zerowa (czyli jest rozkład normalny)')
+else:
+    print('Odrzucamy hipotezę zerową (czyli nie ma rozkładu normalnego)')
+
+p_norm_2 = stats.shapiro(second)[1]
+if p_norm_2 > alpha:
+    print('Powinniśmy zaakceptować hipotezę zerowa (czyli jest rozkład normalny)')
+else:
+    print('Odrzucamy hipotezę zerową (czyli nie ma rozkładu normalnego)')
+
+p_norm_3 = stats.shapiro(third)[1]
+if p_norm_3 > alpha:
+    print('Powinniśmy zaakceptować hipotezę zerowa (czyli jest rozkład normalny)')
+else:
+    print('Odrzucamy hipotezę zerową (czyli nie ma rozkładu normalnego)')
+
+p_norm_4 = stats.shapiro(fourth)[1]
+if p_norm_4 > alpha:
+    print('Powinniśmy zaakceptować hipotezę zerowa (czyli jest rozkład normalny)')
+else:
+    print('Odrzucamy hipotezę zerową (czyli nie ma rozkładu normalnego)')
+
 # czy nie zrobic tylko miedzy 2, 3 i 4?
 p_kruskal = stats.kruskal(first, second, third, fourth)[1]
 

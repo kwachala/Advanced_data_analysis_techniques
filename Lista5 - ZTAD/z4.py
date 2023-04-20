@@ -5,8 +5,6 @@ df = pd.read_csv(r'C:\Users\drago\PycharmProjects\ZTAD\Lista4 - ZTAD\czytelnictw
 
 data_before, data_after = df['przed'], df['po']
 
-# nie ma rozkladu normalnego
-
 alpha = 0.05
 p1 = stats.ranksums(data_before, data_after)[1]
 

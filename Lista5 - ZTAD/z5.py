@@ -9,8 +9,6 @@ time_group1 = time_group1['time']
 time_group2 = df.loc[df['group'] == 2]
 time_group2 = time_group2['time']
 
-# nie ma rozkladu normalnego
-
 alpha = 0.1
 p1 = stats.ranksums(time_group1, time_group2)[1]
 print(p1)

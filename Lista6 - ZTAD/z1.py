@@ -1,5 +1,9 @@
 from scipy.io import loadmat
 from scipy import stats
+from statsmodels.api import qqplot
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 data_set = loadmat("anova_data.mat")
 
@@ -51,6 +55,25 @@ else:
 p_anova = stats.f_oneway(group1, group2, group3)[1]
 print('------------------------------------ANOVA------------------------------------')
 if p_anova > alpha:
-    print('Nie ma podstaw do odrzucenia hipotezy zerowej (próbki pochodzą z populacji o jednakowych wartościach średnich)')
+    print(
+        'Nie ma podstaw do odrzucenia hipotezy zerowej (próbki pochodzą z populacji o jednakowych wartościach średnich)')
 else:
-    print('Odrzucamy hipotezę zerową (dla przynajmniej jednej próbki średnia z niej jest znacząca inna od średnich z pozostałych próbek)')
+    print(
+        'Odrzucamy hipotezę zerową (dla przynajmniej jednej próbki średnia z niej jest znacząca inna od średnich z pozostałych próbek)')
+
+group1 = np.array(group1)
+group2 = np.array(group2)
+group3 = np.array(group3)
+
+fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(6, 8))
+
+qqplot(group1, line='45', fit=True, ax=axes[0])
+qqplot(group2, line='45', fit=True, ax=axes[1])
+qqplot(group3, line='45', fit=True, ax=axes[2])
+
+axes[0].set_title('Group 1')
+axes[1].set_title('Group 2')
+axes[2].set_title('Group 3')
+
+plt.tight_layout()
+plt.show()

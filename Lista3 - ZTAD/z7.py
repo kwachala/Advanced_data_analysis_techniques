@@ -14,6 +14,6 @@ if p_value > alpha:
     print('Nie ma podstaw do odrzucenia hipotezy zerowej')
 else:
     print('Odrzucamy hipotezę zerową')
-
+print(df)
 qqplot(df, line='45',fit=True)
 plt.show()
