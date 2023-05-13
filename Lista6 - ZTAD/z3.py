@@ -1,5 +1,11 @@
 from scipy import stats
 import numpy as np
+import statsmodels.stats.multicomp as mc
+import pingouin as pg
+import seaborn as sb
+
+
+
 
 all = [3415, 4556, 5772, 5432, 1593, 1937, 2242, 2794, 1976, 2056, 2240, 2085, 1526, 1594, 1644, 1705, 1538, 1634, 1866,
        1769, 983, 1086, 1135, 1177, 1050, 1209, 1245, 977, 1861, 2087, 2054, 2018, 1714, 2415, 2361, 2424, 1320, 1621,
@@ -48,11 +54,19 @@ else:
     print('Odrzucamy hipotezę zerową (czyli nie ma rozkładu normalnego)')
 
 # czy nie zrobic tylko miedzy 2, 3 i 4?
-p_kruskal = stats.kruskal(first, second, third, fourth)[1]
+p_friedman = stats.friedmanchisquare(first, second, third, fourth)[1]
 
-if p_kruskal > alpha:
+if p_friedman > alpha:
     print(
         'Nie ma podstaw do odrzucenia hipotezy zerowej (różnice w medianach nie są istotne statystycznie - kampania nie miała wpływu na sprzedaż)')
 else:
     print(
         'Odrzucamy hipotezę zerową (dla przynajmniej jednej próbki mediana z niej jest znacząca inna od median z pozostałych próbek - kampania wpłynęła na sprzedaż)')
+
+groups = ['group1'] * len(first) + ['group2'] * len(second) + ['group3'] * len(third) + ['group4'] * len(fourth)
+data = first + second + third + fourth
+
+
+tukey_results = mc.MultiComparison(data, groups).tukeyhsd()
+print(tukey_results)
+sb.boxplot(data)
